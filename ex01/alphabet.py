@@ -20,6 +20,7 @@ def kaitou(al_t):
         t = " ".join(al_t)
         h = " ".join(al_h)
         print(f"対象文字：{t}")
+        print(f"表示文字：{h}")
         ans = input("欠損文字はいくつあるでしょうか？：")
         if ke == int(ans):
             print("正解です。それでは、具体的に欠損文字を1つずつ入力してください。")
