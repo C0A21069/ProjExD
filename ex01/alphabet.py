@@ -1,19 +1,17 @@
 import datetime
 import random
 
-ta = 10
-ke = 2
-sa = 5
+TA = 10
+KE = 2
+SA = 5
 
 def shutudai(al_lst):
-    global ta
-    al_t = random.sample(al_lst, ta)
+    al_t = random.sample(al_lst,TA)
     return al_t
 
 def kaitou(al_t):
-    global ke, sa
-    for ka in range(sa):
-        al_k = random.sample(al_t, ke)
+    for ka in range(SA):
+        al_k = random.sample(al_t, KE)
         al_h = [moji for moji in al_t if moji not in al_k]
         al_c = al_k.copy()
         random.shuffle(al_t)
@@ -22,9 +20,9 @@ def kaitou(al_t):
         print(f"対象文字：{t}")
         print(f"表示文字：{h}")
         ans = input("欠損文字はいくつあるでしょうか？：")
-        if ke == int(ans):
+        if KE == int(ans):
             print("正解です。それでは、具体的に欠損文字を1つずつ入力してください。")
-            for i in range(ke):
+            for i in range(KE):
                 kotae = input(f"{i+1}つ目の文字を入力してください。：")
                 if kotae in al_c:
                     al_c.remove(kotae)
