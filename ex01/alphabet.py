@@ -13,10 +13,10 @@ def shutudai(al_lst):
 def kaitou(al_t):
     global ke, sa
     for ka in range(sa):
-        random.shuffle(al_t)
         al_k = random.sample(al_t, ke)
         al_h = [moji for moji in al_t if moji not in al_k]
         al_c = al_k.copy()
+        random.shuffle(al_t)
         t = " ".join(al_t)
         h = " ".join(al_h)
         print(f"対象文字：{t}")
@@ -31,6 +31,9 @@ def kaitou(al_t):
                 else:
                     print("不正解です。またチャレンジしてください。")
                     break
+            else:
+                print("正解です。")
+                break
         else:
             print("不正解です。またチャレンジしてください。")
 
