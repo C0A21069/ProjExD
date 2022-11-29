@@ -10,7 +10,10 @@ button_lst = []
 def button_click(event):
     btn = event.widget
     txt = btn["text"]
-    entry.insert(tk.END, txt)
+    if txt == "=":
+        pass
+    else:
+       entry.insert(tk.END, txt)
 
 entry = tk.Entry(root, width = 10, 
                 justify = "right", 
@@ -31,6 +34,7 @@ for i in operators:
                         font = ("", 30),
                         width = 4,
                         height = 2)
+    button.bind("<1>", button_click)
     button_lst.append(button)
 
 for i, button in enumerate(button_lst):
