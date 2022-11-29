@@ -32,9 +32,11 @@ def button_click(event): #ボタンを押したら
 
 def equrl_click(siki): #＝を押したら
     global count
-    if "×" or "÷" in siki:
-            siki = re.sub("×", "*", siki)
-            siki = re.sub("÷", "/", siki)
+    if siki == None:
+        pass
+    elif "×" or "÷" in siki:
+        siki = re.sub("×", "*", siki)
+        siki = re.sub("÷", "/", siki)
     ans = eval(siki)
     if "." in str(ans):
         count = 1
