@@ -10,9 +10,14 @@ button_lst = []
 def button_click(event):
     btn = event.widget
     txt = btn["text"]
-    tkm.showinfo("押すな", f"{txt}のボタンがクリックされました")
+    entry.insert(tk.END, txt)
 
-for i in range(10):
+entry = tk.Entry(root, width = 10, 
+                justify = "right", 
+                font = ("", 40))
+entry.grid(row = 0, column= 0, columnspan = 3)
+
+for i in range(9, -1, -1):
     button = tk.Button(root, text = str(i),
                         font = ("", 30),
                         width = 4,
@@ -20,7 +25,15 @@ for i in range(10):
     button.bind("<1>", button_click)
     button_lst.append(button)
 
-for i, button in enumerate(reversed(button_lst)):
-    button.grid(row = int(i/3), column = i%3)
+operators =["+", "="]
+for i in operators:
+    button = tk.Button(root, text = i,
+                        font = ("", 30),
+                        width = 4,
+                        height = 2)
+    button_lst.append(button)
+
+for i, button in enumerate(button_lst):
+    button.grid(row = int(i/3)+1, column = i%3)
 
 root.mainloop()
