@@ -11,9 +11,11 @@ def button_click(event):
     btn = event.widget
     txt = btn["text"]
     if txt == "=":
-        pass
+        ans = eval(entry.get())
+        entry.delete(0, tk.END)
+        entry.insert(tk.END, ans)
     else:
-       entry.insert(tk.END, txt)
+        entry.insert(tk.END, txt)
 
 entry = tk.Entry(root, width = 10, 
                 justify = "right", 
