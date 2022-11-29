@@ -11,52 +11,56 @@ count = 0
 button_lst = []
 button_ope = []
 
-def button_click(event):
+def button_click(event): #ボタンを押したら
     global count
     btn = event.widget
     txt = btn["text"]
     siki = entry.get()
     if txt == "=":
-        if "×" or "÷" in siki:
-            siki = re.sub("×", "*", siki)
-            siki = re.sub("÷", "/", siki)
-        ans = eval(siki)
-        if "." in str(ans):
-            count = 1
-        count = 0
-        entry.delete(0, tk.END)
-        entry.insert(tk.END, ans)
+        equrl_click(siki)
     elif txt in operators:
-        if siki[-1] in operators:
-            pass
-        elif siki[-1] == ".":
-            pass
-        else:
-            count += 1
-            entry.insert(tk.END, txt)
+        operator_click(siki, txt)
     elif txt == ".":
-        if siki[-1] in operators:
-            pass
-        elif siki[-1] == ".":
-            pass
-        elif count < siki.count("."):
-            pass
-        else:
-            entry.insert(tk.END, txt)            
-    elif txt == "c":
+        point_click(siki, txt)
+    elif txt == "c": #リセット
         entry.delete(0, tk.END)
         count = 0
-    elif txt == "0":
-        if len(siki) == 0:
-            entry.insert(tk.END, txt)
-        elif siki[-1] in "0":
-            entry.insert(tk.END, ".0")
-        else:
-            entry.insert(tk.END, txt)
-    elif siki == "0":
+    elif siki == "0": #先頭の0禁止
         entry.delete(-1)
     else:
         entry.insert(tk.END, txt)
+
+def equrl_click(siki): #＝を押したら
+    global count
+    if "×" or "÷" in siki:
+            siki = re.sub("×", "*", siki)
+            siki = re.sub("÷", "/", siki)
+    ans = eval(siki)
+    if "." in str(ans):
+        count = 1
+    count = 0
+    entry.delete(0, tk.END)
+    entry.insert(tk.END, ans)
+
+def operator_click(siki, txt): #演算子を押したら
+    global count
+    if siki[-1] in operators:
+        pass
+    elif siki[-1] == ".":
+        pass
+    else:
+        count += 1
+        entry.insert(tk.END, txt)
+
+def point_click(siki, txt): #小数点を押したら
+    if siki[-1] in operators:
+        pass
+    elif siki[-1] == ".":
+        pass
+    elif count < siki.count("."):
+        pass
+    else:
+        entry.insert(tk.END, txt)  
 
 entry = tk.Entry(root, width = 14, 
                 justify = "right", 
