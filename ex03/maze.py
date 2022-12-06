@@ -46,6 +46,13 @@ def make_goal(canvas, maze_lst, sx, sy): #ランダムにゴールを生成
         make_goal(canvas, maze_lst, sx, sy)
     return x, y
 
+def finish():
+    canvas.dalete()
+    goal = tk.Tk()
+    goal.title("GOAL!")
+    goal.geometry("750x450")
+    goal.mainloop()
+
 if __name__ == "__main__":
     root = tk.Tk()
     root.title("迷えるこうかとん")
