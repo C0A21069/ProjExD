@@ -22,11 +22,11 @@ def main():
     bm_rct = bm_sfc.get_rect()
     bm_rct.center = random.randint(0, 1600), random.randint(0, 900)
 
-    it_sfc = pg.Surface((20, 20)) #青い球を生成
-    it_sfc.set_colorkey(0, 0)
-    pg.draw.circle(it_sfc, (0, 0, 255), (10, 10), 10)
-    it_rct = bm_sfc.get_rect()
-    it_rct.center = random.randint(0, 1600), random.randint(0, 900)
+    blbm_sfc = pg.Surface((20, 20)) #青い球を生成
+    blbm_sfc.set_colorkey(0, 0)
+    pg.draw.circle(blbm_sfc, (0, 0, 255), (10, 10), 10)
+    blbm_rct = bm_sfc.get_rect()
+    blbm_rct.center = random.randint(0, 1600), random.randint(0, 900)
 
     vx, vy = 1, 1
     ix, iy = 1, 1
@@ -40,10 +40,10 @@ def main():
         scrn_sfc.blit(bg_sfc, bg_rct)
         scrn_sfc.blit(tori_sfc, tori_rct)
         scrn_sfc.blit(bm_sfc, bm_rct)
-        scrn_sfc.blit(it_sfc, it_rct)
+        scrn_sfc.blit(blbm_sfc, blbm_rct)
         key_dct = pg.key.get_pressed()
         bm_rct.move_ip(vx, vy)
-        it_rct.move_ip(ix, iy)
+        blbm_rct.move_ip(ix, iy)
         # bm_rct.inflate_ip(rx, ry)
         def key_down(t):
             if key_dct[pg.K_UP]:
@@ -60,7 +60,7 @@ def main():
         x, y = check_bound(bm_rct, bg_rct)
         vx *= x
         vy *= y
-        xx, yy = check_bound(it_rct, bg_rct)
+        xx, yy = check_bound(blbm_rct, bg_rct)
         ix *= xx
         iy *= yy
         for event in pg.event.get():
@@ -76,10 +76,10 @@ def main():
             if event.type == pg.QUIT:
                 return
 
-        if tori_rct.colliderect(it_rct):#青い球に当たったら速度を5に
+        if tori_rct.colliderect(blbm_rct):#青い球に当たったら速度を5に
             t = 5
             ix, iy = 0, 0
-            it_rct.clamp_ip(tori_rct)
+            blbm_rct.clamp_ip(tori_rct)
 
         if tori_rct.colliderect(bm_rct):
             return
