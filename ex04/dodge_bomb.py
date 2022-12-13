@@ -45,23 +45,18 @@ def main():
         bm_rct.move_ip(vx, vy)
         it_rct.move_ip(ix, iy)
         # bm_rct.inflate_ip(rx, ry)
-        if key_dct[pg.K_UP]:
-            tori_rct.centery -= t
-        if key_dct[pg.K_DOWN]:
-            tori_rct.centery += t
-        if key_dct[pg.K_LEFT]:
-            tori_rct.centerx -= t
-        if key_dct[pg.K_RIGHT]:
-            tori_rct.centerx += t
-        if check_bound(tori_rct, bg_rct) != (1, 1):
+        def key_down(t):
             if key_dct[pg.K_UP]:
-                tori_rct.centery += t
-            if key_dct[pg.K_DOWN]:
                 tori_rct.centery -= t
+            if key_dct[pg.K_DOWN]:
+                tori_rct.centery += t
             if key_dct[pg.K_LEFT]:
-                tori_rct.centerx += t
-            if key_dct[pg.K_RIGHT]:
                 tori_rct.centerx -= t
+            if key_dct[pg.K_RIGHT]:
+                tori_rct.centerx += t
+        key_down(t)
+        if check_bound(tori_rct, bg_rct) != (1, 1):
+            key_down(-t)
         x, y = check_bound(bm_rct, bg_rct)
         vx *= x
         vy *= y
@@ -98,6 +93,8 @@ def check_bound(obj_rct, scr_rct):
     if obj_rct.top < scr_rct.top or obj_rct.bottom > scr_rct.bottom:
         y = -1
     return x, y
+
+
         
 
 if __name__ == "__main__":
