@@ -119,9 +119,9 @@ class Score():
         self.update()
 
     def update(self):
-        if SCORE != self.lastscore:
-            self.lastscore = SCORE
-            msg = "Score: %d" % SCORE
+        if score != self.lastscore:
+            self.lastscore = score
+            msg = "Score: %d" % score
             self.image = self.font.render(msg, 0, self.color)
 
 
