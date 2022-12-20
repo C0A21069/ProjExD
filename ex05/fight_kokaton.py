@@ -3,6 +3,7 @@ import random
 import sys
 
 color = {"black":(0, 0, 0), "red":(255, 0, 0), "yellow":(255, 255, 0), "blue":(0, 0, 255)}
+SCORE = 0
 
 class Screen:
     def __init__(self, title, wh, fig_path):
@@ -99,7 +100,7 @@ class Shot: #たまでてくる
 
     def player(self, scr): #自分
         key_dct = pg.key.get_pressed()
-        if key_dct[pg.K_SPACE]:
+        if key_dct[pg.K_LEFT]:
             self.rct.move_ip(-1, 0)
             self.blit(scr)
             
@@ -109,7 +110,19 @@ class Shot: #たまでてくる
         self.rct.move_ip(-1, 0)
         self.blit(scr)
 
+class Score():
+    def __init__(self):
+        self.font = pg.font.Font(None, 20)
+        self.font.set_italic(1)
+        self.color = "white"
+        self.lastscore = -1
+        self.update()
 
+    def update(self):
+        if SCORE != self.lastscore:
+            self.lastscore = SCORE
+            msg = "Score: %d" % SCORE
+            self.image = self.font.render(msg, 0, self.color)
 
 
 def check_bound(obj_rct, scr_rct):
@@ -146,6 +159,8 @@ def main():
     tori_shot = Shot(color["blue"], 10, tori.rct) #こうかとんの球
     chimp_shot = Shot(color["yellow"], 10, chimp.rct) #敵の弾
 
+    score = Score()
+
     # 練習２
     while True:
         scr.blit() 
@@ -163,6 +178,8 @@ def main():
         tori_shot.player(scr)
         chimp_shot.enemy(scr)
 
+        score.update()
+
         # 練習８
         if tori.rct.colliderect(bomb.rct):
             return
@@ -172,6 +189,7 @@ def main():
 
         if tori.rct.colliderect(chimp_shot.rct): #こうかとんが敵の球に接触
             return
+        
 
         pg.display.update()
         clock.tick(1000)
