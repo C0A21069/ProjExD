@@ -3,7 +3,7 @@ import random
 import sys
 
 color = {"black":(0, 0, 0), "red":(255, 0, 0), "yellow":(255, 255, 0), "blue":(0, 0, 255)}
-SCORE = 0
+score = 0
 
 class Screen:
     def __init__(self, title, wh, fig_path):
@@ -159,7 +159,7 @@ def main():
     tori_shot = Shot(color["blue"], 10, tori.rct) #こうかとんの球
     chimp_shot = Shot(color["yellow"], 10, chimp.rct) #敵の弾
 
-    score = Score()
+    scr = Score()
 
     # 練習２
     while True:
@@ -178,7 +178,7 @@ def main():
         tori_shot.player(scr)
         chimp_shot.enemy(scr)
 
-        score.update()
+        scr.update()
 
         # 練習８
         if tori.rct.colliderect(bomb.rct):
