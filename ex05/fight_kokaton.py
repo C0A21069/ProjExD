@@ -136,15 +136,15 @@ def main():
     # scrn_sfcにtori_rctに従って，tori_sfcを貼り付ける
     tori.update(scr)
 
-    chimp = Enemy("fig/chimp.png", 4.0, (0, 450))
+    chimp = Enemy("fig/chimp.png", 4.0, (0, 450)) #敵
     
 
     # 練習５
     bomb = Bomb(color["red"], 10, (+1, +1), scr)
     bomb.update(scr)
 
-    tori_shot = Shot(color["blue"], 10, tori.rct)
-    chimp_shot = Shot(color["yellow"], 10, chimp.rct)
+    tori_shot = Shot(color["blue"], 10, tori.rct) #こうかとんの球
+    chimp_shot = Shot(color["yellow"], 10, chimp.rct) #敵の弾
 
     # 練習２
     while True:
